@@ -19,7 +19,6 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 z-20 w-full text-white bg-[#801b9c] shadow-lg">
       <div className="container flex items-center justify-between p-5 mx-auto">
-
         {/* Logo */}
         <h1 className="text-3xl italic font-bold">Portfolio</h1>
 
@@ -35,7 +34,11 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <nav className="items-center hidden md:flex space-x-7">
           {NavbarLinks.map((link) => (
-            <a key={link.id} href={link.link} className="text-lg hover:text-gray-200">
+            <a
+              key={link.id}
+              href={link.link}
+              className="text-lg hover:text-gray-200"
+            >
               {link.name}
             </a>
           ))}
@@ -52,7 +55,7 @@ export default function Navbar() {
       <div
         className={`${
           isOpen ? "flex" : "hidden"
-        } md:hidden fixed inset-0 z-30 flex-col justify-center items-center bg-[#801b9c]`}
+        } md:hidden fixed inset-0 z-30 flex-col items-center bg-[#801b9c] overflow-y-auto py-32`}
       >
         {/* Nav Links */}
         {NavbarLinks.map((link) => (

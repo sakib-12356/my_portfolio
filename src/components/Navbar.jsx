@@ -11,15 +11,17 @@ export default function Navbar() {
     { id: 4, name: "Experience", link: "#experience" },
   ];
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
   }, [isOpen]);
 
+  const whatsappNumber = "8801302631009";
+  const defaultMessage = "Hello! I want to contact you.";
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultMessage)}`;
+
   return (
-    <header className="fixed top-0 left-0 z-20 w-full text-white bg-[#801b9c] shadow-lg">
+    <header className="fixed top-0 left-0 z-20 w-full text-white bg-[#801b9c] shadow-lg transition-all duration-300">
       <div className="container flex items-center justify-between p-5 mx-auto">
-        {/* Logo */}
         <h1 className="text-3xl italic font-bold">Portfolio</h1>
 
         {/* Mobile Menu Button */}
@@ -34,17 +36,16 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <nav className="items-center hidden md:flex space-x-7">
           {NavbarLinks.map((link) => (
-            <a
-              key={link.id}
-              href={link.link}
-              className="text-lg hover:text-gray-200"
-            >
+            <a key={link.id} href={link.link} className="text-lg transition-colors duration-300 hover:text-gray-200">
               {link.name}
             </a>
           ))}
+
           <a
-            href="#contact"
-            className="px-3 py-2 text-lg border-2 rounded-xl hover:bg-purple-900"
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-2 text-lg transition-all duration-300 transform bg-transparent border-2 rounded-xl hover:bg-purple-900 hover:scale-105"
           >
             Contact
           </a>
@@ -55,28 +56,30 @@ export default function Navbar() {
       <div
         className={`${
           isOpen ? "flex" : "hidden"
-        } md:hidden fixed inset-0 z-30 flex-col items-center bg-[#801b9c] overflow-y-auto py-32`}
+        } md:hidden fixed inset-0 z-30 flex-col justify-center items-center bg-[#801b9c] overflow-y-auto py-20 transition-all duration-300`}
       >
-        {/* Nav Links */}
-        {NavbarLinks.map((link) => (
+        <div className="flex flex-col items-center w-full max-w-xs mx-auto space-y-6">
+          {NavbarLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.link}
+              className="text-2xl transition-colors duration-300 hover:text-gray-300"
+              onClick={() => setIsOpen(false)}
+            >
+              {link.name}
+            </a>
+          ))}
+
           <a
-            key={link.id}
-            href={link.link}
-            className="mb-6 text-2xl hover:text-gray-300"
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 text-xl transition-all duration-300 transform bg-transparent border-2 rounded-xl hover:bg-purple-900 hover:scale-105"
             onClick={() => setIsOpen(false)}
           >
-            {link.name}
+            Contact
           </a>
-        ))}
-
-        {/* Contact Button */}
-        <a
-          href="#contact"
-          className="px-8 py-3 text-xl border-2 rounded-xl hover:bg-purple-900"
-          onClick={() => setIsOpen(false)}
-        >
-          Contact
-        </a>
+        </div>
       </div>
     </header>
   );

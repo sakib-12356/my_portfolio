@@ -1,6 +1,6 @@
 import Navbar from './Navbar';
 import facebook from '/facebook.jpeg';
-import hero from '/hero.jpeg';
+import hero from '/hero1.jpg';
 import insta from '/insta.jpeg';
 import github from '/github.svg';
 import link from '/link.png';
@@ -67,7 +67,7 @@ export default function Home() {
             <img
               src={hero}
               alt="Hero Image"
-              className="sm:h-[400px] md:h-[485px] w-[500px] sm:w-[480px] object-cover rounded-lg"
+              className="sm:h-[400px] md:h-[485px] sm:w-[480px] w-64 h-64 object-cover rounded-full"
             />
           </figure>
         </div>

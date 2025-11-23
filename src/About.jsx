@@ -1,69 +1,97 @@
-import img1 from '/img1.jpg';
-import img2 from '/img2.jpg';
-import img3 from '/img3.jpg';
-
-
+import { useState } from "react";
+import hero from '/hero2.jpg';
+import hero1 from '/hero1.jpg';
+import hero3 from '/hero3.jpg';
 
 export default function About() {
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <section 
       id="about" 
-      className="flex items-center justify-center min-h-screen px-4 overflow-hidden text-white sm:px-6"
+      className="flex items-center justify-center min-h-screen px-4 py-16 text-white sm:px-6"
     >
       <div 
-        className="grid items-center w-full max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2 sm:gap-12"
+        className="grid w-full max-w-6xl grid-cols-1 gap-10 lg:grid-cols-2"
       >
-        <figure data-aos="fade-left" data-aos-delay='500'>
-          <div className="relative flex flex-wrap justify-center gap-4">
+
+        {/* ==== Images ==== */}
+        <figure 
+          data-aos="fade-left" 
+          data-aos-delay='500'
+          className="flex items-center justify-center w-full"
+        >
+          <div className="relative flex flex-col items-center justify-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full">
+
+            {/* Oval gradient shape - mobile fixed */}
             <div 
-              className="h-[200px] sm:h-[300px] w-[300px] sm:w-[400px] 
-                         lg:h-[300px] lg:w-[600px] bg-gradient-to-t 
-                         from-[#6d2b97] via-[#6c95f5] to-[#6b5c5] 
-                         absolute transform rotate-12 z-0 right-5 -top-2 
-                         md:top-10 rounded-full"
+              className="w-64 h-32 sm:w-80 sm:h-40 md:w-[400px] md:h-[200px]
+                         bg-gradient-to-t from-[#6d2b97] via-[#6c95f5] to-[#6b5c5]
+                         absolute -top-6 sm:-top-4 md:top-4 rounded-full rotate-12 opacity-80"
             />
+
+            {/* Small top-left image */}
             <img 
-              src={img1}
-              alt="about picture 1" 
-              className="absolute z-20 w-24 h-24 transform -translate-y-12 shadow-lg -top-2 left-5 sm:left-10 sm:w-32 sm:h-32 rounded-3xl" 
+              src={hero}
+              alt="about-small-1" 
+              className="absolute z-20 w-20 h-20 shadow-lg sm:w-28 sm:h-28 -top-10 left-3 sm:-top-14 sm:left-6 rounded-2xl"
             />
+
+            {/* Main center image */}
             <img 
-           src={img2}
-              alt="about picture 2" 
-              className="relative z-10 rounded-lg shadow-lg w-36 h-44 sm:w-40 md:w-72 md:h-96" 
+              src={hero1}
+              alt="about-main" 
+              className="relative z-10 w-40 mt-12 shadow-xl h-52 sm:w-56 sm:h-72 md:w-72 md:h-96 rounded-xl"
             />
+
+            {/* Small bottom-right image */}
             <img 
-               src={img3}
-              alt="about picture" 
-              className="absolute bottom-0 z-10 w-20 h-20 transform translate-y-12 shadow-lg right-5 sm:right-10 sm:w-32 sm:h-32 rounded-3xl" 
+              src={hero3}
+              alt="about-small-2" 
+              className="absolute z-20 w-16 h-16 shadow-lg sm:w-24 sm:h-24 -bottom-6 right-3 sm:-bottom-10 sm:right-6 rounded-2xl"
             />
           </div>
         </figure>
-        {/* other content goes here */}
-       <article data-aos="fade-left" data-aos-delay="500" className="relative text-center lg:text-left">
-            <div className="absolute z-0 w-40 h-40 sm:w-60 sm:h-60 bg-[#cd3cf5] rounded-full blur-xl opacity-50 -top-5 left-10"/>
 
-            <header>
-                <h1 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl sm:mb-6">
-                    About Me
-                </h1>
-            </header>
-            
-            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg md:text-xl sm:mb-8">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                 Laborum ut aperiam quia dignissimos corrupti, hic fugit,
-                 
-               eveniet reprehenderit possimus voluptatum tenetur provident consequatur itaque id rerum? Quo quaep et ab
+        {/* ==== Text Section ==== */}
+        <article 
+          data-aos="fade-left" 
+          data-aos-delay="500" 
+          className="relative px-2 text-center lg:text-left"
+        >
+          <div 
+            className="absolute w-28 h-28 sm:w-40 sm:h-40 bg-[#cd3cf5] 
+                       rounded-full blur-2xl opacity-40 -top-5 left-1/2 
+                       -translate-x-1/2 lg:left-10 lg:translate-x-0"
+          />
+
+          <h1 className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl">
+            About Me
+          </h1>
+
+          <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg md:text-xl">
+            I am a passionate <span className="font-semibold text-purple-400">Frontend Developer</span> 
+            who loves creating clean, modern UI experiences with 
+            <span className="font-semibold text-purple-400"> React, Tailwind CSS, and JavaScript</span>.
+          </p>
+
+          {showMore && (
+            <p className="mb-6 text-base leading-relaxed text-gray-300 sm:text-lg md:text-xl animate-fadeIn">
+              I enjoy solving real-world problems, learning new technologies, 
+              and building interfaces that are both beautiful and functional.  
+              My long-term goal is to grow into a highly skilled Frontend Engineer 
+              and contribute to impactful digital products.
             </p>
-            
-            <footer>
-                <button className="inline-flex text-white border-2 py-2 px-4 sm:px-6 
-                                   focus:outline-none hover:bg-[#801b9c] 
-                                   hover:shadow-lg [0_0_40px_rgba(128,0,128,0.7)] 
-                                   rounded-full text-sm sm:text-lg">
-                    Learn More
-                </button>
-            </footer>
+          )}
+
+          <button 
+            onClick={() => setShowMore(!showMore)}
+            className="inline-flex text-white border-2 py-2 px-6 
+                       focus:outline-none hover:bg-[#801b9c] 
+                       hover:shadow-lg [0_0_40px_rgba(128,0,128,0.7)] 
+                       rounded-full text-sm sm:text-lg">
+            {showMore ? "Show Less" : "Learn More"}
+          </button>
         </article>
 
       </div>
